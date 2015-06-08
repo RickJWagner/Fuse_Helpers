@@ -28,7 +28,7 @@
 </node>
 </node>
 <node CREATED="1433533600272" ID="ID_1806100946" MODIFIED="1433535769760" POSITION="right" TEXT="org.wildfly.extension.camel.handler"/>
-<node CREATED="1433533626223" FOLDED="true" ID="ID_232819017" MODIFIED="1433535769760" POSITION="left" TEXT="org.wildfly.extension.camel.parser">
+<node CREATED="1433533626223" FOLDED="true" ID="ID_232819017" MODIFIED="1433537166762" POSITION="left" TEXT="org.wildfly.extension.camel.parser">
 <node CREATED="1433533933503" ID="ID_349908375" MODIFIED="1433534071924" TEXT="CamelExtension">
 <icon BUILTIN="flag-orange"/>
 <node CREATED="1433534024176" ID="ID_1421069656" MODIFIED="1433534026295" TEXT="Domain extension used to initialize the Camel subsystem."/>
@@ -48,18 +48,18 @@
 <node CREATED="1433534814166" ID="ID_251662955" MODIFIED="1433534815534" TEXT="Provides access RunAs Client login context"/>
 </node>
 </node>
-<node CREATED="1433533650481" FOLDED="true" ID="ID_426846879" MODIFIED="1433535775688" POSITION="left" TEXT="org.wildfly.extension.camel.service">
-<node CREATED="1433535160327" FOLDED="true" ID="ID_1804260501" MODIFIED="1433535769761" TEXT="CamelBootstrapService">
+<node CREATED="1433533650481" ID="ID_426846879" MODIFIED="1433537168080" POSITION="left" TEXT="org.wildfly.extension.camel.service">
+<node CREATED="1433535160327" FOLDED="true" ID="ID_1804260501" MODIFIED="1433537183247" TEXT="CamelBootstrapService">
 <icon BUILTIN="flag-orange"/>
 <node CREATED="1433535178176" ID="ID_870901140" MODIFIED="1433535180720" TEXT="Service responsible for creating and managing the life-cycle of the Camel subsystem."/>
 </node>
-<node CREATED="1433535204393" FOLDED="true" ID="ID_1961738225" MODIFIED="1433535769761" TEXT="CamelContextFactoryBindingService">
+<node CREATED="1433535204393" ID="ID_1961738225" MODIFIED="1433537924774" TEXT="CamelContextFactoryBindingService">
 <icon BUILTIN="flag-orange"/>
 <node CREATED="1433535210846" ID="ID_710082020" MODIFIED="1433535210846" TEXT="">
 <node CREATED="1433535229354" ID="ID_976649268" MODIFIED="1433535229354" TEXT="The CamelContextFactory JNDI binding service"/>
 </node>
 </node>
-<node CREATED="1433535283242" FOLDED="true" ID="ID_673595901" MODIFIED="1433535769761" TEXT="CamelContextFactoryService">
+<node CREATED="1433535283242" ID="ID_673595901" MODIFIED="1433537928663" TEXT="CamelContextFactoryService">
 <icon BUILTIN="flag"/>
 <node CREATED="1433535288066" ID="ID_558258880" MODIFIED="1433535292746" TEXT="The CamelContextFactoryService service."/>
 </node>
