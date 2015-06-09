@@ -8,7 +8,7 @@
 <node CREATED="1433623276342" ID="ID_1680459029" MODIFIED="1433623301270" TEXT="So just uses &apos;startup&apos; and sticks in CDI, the route runs (no other startup references)"/>
 </node>
 </node>
-<node CREATED="1433622248905" ID="ID_249526027" MODIFIED="1433795216627" POSITION="left" TEXT="camel-cdi">
+<node CREATED="1433622248905" FOLDED="true" ID="ID_249526027" MODIFIED="1433860898966" POSITION="left" TEXT="camel-cdi">
 <node CREATED="1433794216060" ID="ID_1251082217" MODIFIED="1433794219030" TEXT="@Startup @ApplicationScoped @ContextName(&quot;amq-cdi-context&quot;)"/>
 <node CREATED="1433794221260" ID="ID_834220004" MODIFIED="1433794256371" TEXT="Servlet Injects Camel Context from CDI, uses Producer to &quot;direct&quot;"/>
 <node CREATED="1433795085289" ID="ID_48983893" MODIFIED="1433795090868" TEXT="Servlet uses: @Inject &#x9;@ContextName(&quot;cdi-context&quot;) &#x9;private CamelContext camelctx;"/>
@@ -33,7 +33,7 @@
 </node>
 <node CREATED="1433727006167" ID="ID_13547497" MODIFIED="1433727015478" TEXT="Has WS (Not very fancy)"/>
 </node>
-<node CREATED="1433622267809" ID="ID_271699591" MODIFIED="1433795001314" POSITION="left" TEXT="camel-jaxws">
+<node CREATED="1433622267809" FOLDED="true" ID="ID_271699591" MODIFIED="1433860904295" POSITION="left" TEXT="camel-jaxws">
 <node CREATED="1433794350474" ID="ID_100214605" MODIFIED="1433794377225" TEXT="Uses CamelProxy to mimic Camel JAX-WS consumer">
 <icon BUILTIN="full-1"/>
 </node>
@@ -44,7 +44,12 @@
 <node CREATED="1433795003055" ID="ID_1615702842" MODIFIED="1433795018702" TEXT="Main Idea:  Camel Route stands in for called WS Impl."/>
 </node>
 <node CREATED="1433622273299" ID="ID_36900856" MODIFIED="1433622277654" POSITION="right" TEXT="camel-jpa"/>
-<node CREATED="1433622279634" ID="ID_1751184868" MODIFIED="1433622281542" POSITION="left" TEXT="camel-jms"/>
+<node CREATED="1433622279634" ID="ID_1751184868" MODIFIED="1433872473957" POSITION="left" TEXT="camel-jms">
+<node CREATED="1433872377084" ID="ID_1160272963" MODIFIED="1433872380482" TEXT="Usual: @Startup @ApplicationScoped @ContextName(&quot;jms-cdi-context&quot;)"/>
+<node CREATED="1433872385376" ID="ID_143665609" MODIFIED="1433872407590" TEXT="RB injects CF:     @Resource(mappedName = &quot;java:jboss/DefaultJMSConnectionFactory&quot;)     private ConnectionFactory connectionFactory;"/>
+<node CREATED="1433872417118" ID="ID_1031277775" MODIFIED="1433872446830" TEXT="RB makes JMSComponent, injects:  getContext().addComponent(&quot;jms&quot;, component);"/>
+<node CREATED="1433872475603" ID="ID_647662136" MODIFIED="1433872487194" TEXT="Sends, reads from injected JMSComponent"/>
+</node>
 <node CREATED="1433622294836" ID="ID_1801058753" MODIFIED="1433622298431" POSITION="right" TEXT="camel-mail"/>
 <node CREATED="1433622300230" ID="ID_886907030" MODIFIED="1433622302803" POSITION="left" TEXT="camel-rest"/>
 <node CREATED="1433622304755" ID="ID_175123175" MODIFIED="1433622308493" POSITION="right" TEXT="camel-transacted-jms"/>
