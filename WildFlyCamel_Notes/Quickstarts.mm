@@ -44,14 +44,20 @@
 <node CREATED="1433795003055" ID="ID_1615702842" MODIFIED="1433795018702" TEXT="Main Idea:  Camel Route stands in for called WS Impl."/>
 </node>
 <node CREATED="1433622273299" ID="ID_36900856" MODIFIED="1433622277654" POSITION="right" TEXT="camel-jpa"/>
-<node CREATED="1433622279634" ID="ID_1751184868" MODIFIED="1433872473957" POSITION="left" TEXT="camel-jms">
+<node CREATED="1433622279634" FOLDED="true" ID="ID_1751184868" MODIFIED="1433964946703" POSITION="left" TEXT="camel-jms">
 <node CREATED="1433872377084" ID="ID_1160272963" MODIFIED="1433872380482" TEXT="Usual: @Startup @ApplicationScoped @ContextName(&quot;jms-cdi-context&quot;)"/>
-<node CREATED="1433872385376" ID="ID_143665609" MODIFIED="1433872407590" TEXT="RB injects CF:     @Resource(mappedName = &quot;java:jboss/DefaultJMSConnectionFactory&quot;)     private ConnectionFactory connectionFactory;"/>
+<node CREATED="1433872385376" ID="ID_143665609" MODIFIED="1433964855826" TEXT="RB injects CF:     @Resource(mappedName = &quot;java:jboss/DefaultJMSConnectionFactory&quot;)     private ConnectionFactory connectionFactory;"/>
 <node CREATED="1433872417118" ID="ID_1031277775" MODIFIED="1433872446830" TEXT="RB makes JMSComponent, injects:  getContext().addComponent(&quot;jms&quot;, component);"/>
 <node CREATED="1433872475603" ID="ID_647662136" MODIFIED="1433872487194" TEXT="Sends, reads from injected JMSComponent"/>
 </node>
 <node CREATED="1433622294836" ID="ID_1801058753" MODIFIED="1433622298431" POSITION="right" TEXT="camel-mail"/>
-<node CREATED="1433622300230" ID="ID_886907030" MODIFIED="1433622302803" POSITION="left" TEXT="camel-rest"/>
+<node CREATED="1433622300230" ID="ID_886907030" MODIFIED="1433966041925" POSITION="left" TEXT="camel-rest">
+<node CREATED="1433964842243" ID="ID_1319171785" MODIFIED="1433964859558" TEXT="CXFRS and Restlet component consumer endpoints are not supported">
+<icon BUILTIN="yes"/>
+<node CREATED="1433964924412" ID="ID_812611728" MODIFIED="1433964936637" TEXT="Instead use Camel REST DSL and Camel Proxy"/>
+</node>
+<node CREATED="1433966043500" ID="ID_1127980988" MODIFIED="1433966048343" TEXT="Needs more study"/>
+</node>
 <node CREATED="1433622304755" ID="ID_175123175" MODIFIED="1433622308493" POSITION="right" TEXT="camel-transacted-jms"/>
 </node>
 </map>
