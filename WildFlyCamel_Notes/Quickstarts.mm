@@ -1,11 +1,14 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1433622152693" ID="ID_688101220" MODIFIED="1433622246067" TEXT="Camel-on-EAP-quickstarts">
-<node CREATED="1433622174731" ID="ID_1634986055" MODIFIED="1433622193480" POSITION="right" TEXT="camel-activemq">
+<node CREATED="1433622174731" ID="ID_1634986055" MODIFIED="1434655252054" POSITION="right" TEXT="camel-activemq">
 <node CREATED="1433622387245" ID="ID_608302950" MODIFIED="1433623276342" TEXT="RB: ActiveMQRouteBuilder">
 <node CREATED="1433622538365" ID="ID_496878923" MODIFIED="1433622542124" TEXT="@Startup @ApplicationScoped @ContextName(&quot;amq-cdi-context&quot;)"/>
 <node CREATED="1433622551019" ID="ID_1314929082" MODIFIED="1433622591337" TEXT="makes A-MQ component in &apos;configure()&apos;"/>
 <node CREATED="1433623276342" ID="ID_1680459029" MODIFIED="1433623301270" TEXT="So just uses &apos;startup&apos; and sticks in CDI, the route runs (no other startup references)"/>
+</node>
+<node CREATED="1434655252055" ID="ID_1337495953" MODIFIED="1434655267088" TEXT="Unsupported!  A-MQ is embedded">
+<icon BUILTIN="closed"/>
 </node>
 </node>
 <node CREATED="1433622248905" FOLDED="true" ID="ID_249526027" MODIFIED="1433860898966" POSITION="left" TEXT="camel-cdi">
@@ -14,7 +17,7 @@
 <node CREATED="1433795085289" ID="ID_48983893" MODIFIED="1433795090868" TEXT="Servlet uses: @Inject &#x9;@ContextName(&quot;cdi-context&quot;) &#x9;private CamelContext camelctx;"/>
 <node CREATED="1433795218583" ID="ID_1069272234" MODIFIED="1433795230339" TEXT="Test class uses simple Http methods to act like client"/>
 </node>
-<node CREATED="1433622253825" ID="ID_1856674766" MODIFIED="1433727006167" POSITION="right" TEXT="camel-cxf">
+<node CREATED="1433622253825" ID="ID_1856674766" MODIFIED="1434655494833" POSITION="right" TEXT="camel-cxf">
 <node CREATED="1433726315789" ID="ID_1161271581" MODIFIED="1433726401295" TEXT="Wildfly-Camel does not support cxf consumers!">
 <icon BUILTIN="yes"/>
 <node CREATED="1433726553076" ID="ID_1111744755" MODIFIED="1433794371593" TEXT="Camel-proxy might help">
@@ -32,6 +35,9 @@
 <node CREATED="1433727023202" ID="ID_1525991125" MODIFIED="1433727030807" TEXT="no explicit return, but is a String"/>
 </node>
 <node CREATED="1433727006167" ID="ID_13547497" MODIFIED="1433727015478" TEXT="Has WS (Not very fancy)"/>
+<node CREATED="1434655494833" ID="ID_211250098" MODIFIED="1434655511842" TEXT="Provides web form to initiate testing.">
+<icon BUILTIN="ksmiletris"/>
+</node>
 </node>
 <node CREATED="1433622267809" FOLDED="true" ID="ID_271699591" MODIFIED="1433860904295" POSITION="left" TEXT="camel-jaxws">
 <node CREATED="1433794350474" ID="ID_100214605" MODIFIED="1433794377225" TEXT="Uses CamelProxy to mimic Camel JAX-WS consumer">
@@ -50,7 +56,17 @@
 <node CREATED="1433872417118" ID="ID_1031277775" MODIFIED="1433872446830" TEXT="RB makes JMSComponent, injects:  getContext().addComponent(&quot;jms&quot;, component);"/>
 <node CREATED="1433872475603" ID="ID_647662136" MODIFIED="1433872487194" TEXT="Sends, reads from injected JMSComponent"/>
 </node>
-<node CREATED="1433622294836" ID="ID_1801058753" MODIFIED="1433622298431" POSITION="right" TEXT="camel-mail"/>
+<node CREATED="1433622294836" ID="ID_1801058753" MODIFIED="1434656525704" POSITION="right" TEXT="camel-mail">
+<node CREATED="1434655519372" ID="ID_1092210388" MODIFIED="1434655528255" TEXT="Provides web form to initiate testing">
+<icon BUILTIN="ksmiletris"/>
+</node>
+<node CREATED="1434655532100" ID="ID_1036299736" MODIFIED="1434655540622" TEXT="configures &apos;green mail&apos; for example"/>
+<node CREATED="1434656527168" ID="ID_1692876453" MODIFIED="1434656800435" TEXT="Wants you to run CLI scripts to bind mail server">
+<node CREATED="1434656803500" ID="ID_1293947943" MODIFIED="1434656822182" TEXT="So not convenient w/Docker">
+<icon BUILTIN="smiley-neutral"/>
+</node>
+</node>
+</node>
 <node CREATED="1433622300230" ID="ID_886907030" MODIFIED="1433966041925" POSITION="left" TEXT="camel-rest">
 <node CREATED="1433964842243" ID="ID_1319171785" MODIFIED="1433964859558" TEXT="CXFRS and Restlet component consumer endpoints are not supported">
 <icon BUILTIN="yes"/>
