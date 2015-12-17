@@ -1,0 +1,56 @@
+<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd" xmlns:core="http://www.milyn.org/xsd/smooks/smooks-core-1.4.xsd"
+	xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.4.xsd" xmlns:ds="http://www.milyn.org/xsd/smooks/datasource-1.3.xsd"
+	 xmlns:csv="http://www.milyn.org/xsd/smooks/csv-1.2.xsd" xmlns:fl="http://www.milyn.org/xsd/smooks/fixed-length-1.3.xsd"
+	 xmlns:db="http://www.milyn.org/xsd/smooks/db-routing-1.1.xsd" xmlns:file="http://www.milyn.org/xsd/smooks/file-routing-1.1.xsd">
+
+	
+	<core:filterSettings type="SAX" defaultSerialization="true" terminateOnException="true"
+		readerPoolSize="3" closeSource="true" closeResult="true" rewriteEntities="false" />
+
+
+	<!-- Filter the message using the SAX Filter (i.e. not DOM, so no intermediate DOM, so we can process huge messages... -->
+	<params>
+		<param name="stream.filter.type">SAX</param>
+	</params>
+
+	<ds:JNDI bindOnElement="#document" datasource="DBExtractTransformLoadDS" datasourceJndi="java:jboss/datasources/DBExtractTransformLoadDS"
+		transactionManager="JDBC" />
+		
+	<!--  Ricks MySQL DS -->
+	<!--  com.mysql.jdbc.Driver -->
+	<ds:direct bindOnElement="#document"           
+	   datasource="DBExtractTransformLoadDS"
+	   driver="com.mysql.jdbc.Driver"
+	   url="jdbc:mysql://localhost:3306/for_smooks"
+	   username="rick"
+	   password="password"
+	   autoCommit="false" />
+	
+	
+	<csv:reader
+		fields="code, name" separator=";">
+	</csv:reader>
+
+       <resource-config selector="csv-record">
+        <resource>org.milyn.delivery.DomModelCreatorresource</resource>
+       </resource-config>
+
+    <jb:bean beanId="data_holder" class="org.wildfly.camel.file.DataHolder" createOnElement="csv-record">
+	<jb:value property="code" decoder="Integer" data="csv-record/code" />
+	<jb:value property="name" data="csv-record/name" />
+    </jb:bean>
+
+
+    <db:executor executeOnElement="csv-record" datasource="DBExtractTransformLoadDS" executeBefore="false">
+		<db:statement>INSERT INTO TestTable(code, name)VALUES(${data_holder.code},${data_holder.name})</db:statement>
+    </db:executor>
+
+
+
+
+
+
+
+
+	
+</smooks-resource-list>
