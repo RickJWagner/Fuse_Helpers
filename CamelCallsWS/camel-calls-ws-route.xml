@@ -1,0 +1,44 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- The serviceClass is a POJO that was generated from an external service's wsdl with wsconsume.
+          $JBOSS/bin/wsconsume.sh -k MyServiceWSDLRetreivedWithWGet.xml
+     The -k flag tells wsconsume to keep the source generated.  This is what is placed in the Camel project
+     and referenced here.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="
+       	   http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring 
+       http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://camel.apache.org/schema/cxf 
+       http://camel.apache.org/schema/cxf/camel-cxf.xsd"
+	   
+	   >
+       
+
+     
+	<cxf:cxfEndpoint id="paymentServiceEndpoint"
+		address="http://localhost:8080/MyService/MyService" 
+		serviceClass="org.example.myservice.MyService" />
+      
+<!--  Note the dataFormat.  Without this, get GenericFile not converted to String exception -->
+
+
+<camelContext xmlns="http://camel.apache.org/schema/spring">
+  <route>
+    <from uri="file:/home/rick/Junk/Camel/In"/>
+    <to uri="cxf:bean:paymentServiceEndpoint?dataFormat=MESSAGE"/>
+    <to uri="log:myLog?showAll=true&amp;multiline=true"/>
+     <log message="Done! ${body}" />
+    <to uri="file:/home/rick/Junk/Camel/Out"/>
+  </route>
+</camelContext>
+
+</beans>
+
