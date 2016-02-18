@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://jaxws.examples.camel.wildfly.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="GreetWSService" targetNamespace="http://jaxws.examples.camel.wildfly.org/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://jaxws.examples.camel.wildfly.org/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jaxws.examples.camel.wildfly.org/">
+  <xs:element name="getGreeting" type="tns:getGreeting"/>
+  <xs:element name="getGreetingResponse" type="tns:getGreetingResponse"/>
+  <xs:complexType name="getGreeting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGreetingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MalformedURLException" type="tns:MalformedURLException"/>
+  <xs:complexType name="MalformedURLException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getGreeting">
+    <wsdl:part element="tns:getGreeting" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="MalformedURLException">
+    <wsdl:part element="tns:MalformedURLException" name="MalformedURLException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGreetingResponse">
+    <wsdl:part element="tns:getGreetingResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="greeting">
+    <wsdl:operation name="getGreeting">
+      <wsdl:input message="tns:getGreeting" name="getGreeting">
+    </wsdl:input>
+      <wsdl:output message="tns:getGreetingResponse" name="getGreetingResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:MalformedURLException" name="MalformedURLException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GreetWSServiceSoapBinding" type="tns:greeting">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getGreeting">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getGreeting">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getGreetingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="MalformedURLException">
+        <soap:fault name="MalformedURLException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GreetWSService">
+    <wsdl:port binding="tns:GreetWSServiceSoapBinding" name="greetingPort">
+      <soap:address location="http://localhost:8080/example-camel-jaxws/GreetWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

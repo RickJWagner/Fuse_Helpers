@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://cxf.examples.camel.wildfly.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="greeting" targetNamespace="http://cxf.examples.camel.wildfly.org/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cxf.examples.camel.wildfly.org/" elementFormDefault="unqualified" targetNamespace="http://cxf.examples.camel.wildfly.org/" version="1.0">
+
+  <xs:element name="greet" type="tns:greet"/>
+
+  <xs:element name="greetResponse" type="tns:greetResponse"/>
+
+  <xs:complexType name="greet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="greetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="greetResponse">
+    <wsdl:part element="tns:greetResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="greet">
+    <wsdl:part element="tns:greet" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="greeting">
+    <wsdl:operation name="greet">
+      <wsdl:input message="tns:greet" name="greet">
+    </wsdl:input>
+      <wsdl:output message="tns:greetResponse" name="greetResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="greetingSoapBinding" type="tns:greeting">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="greet">
+      <soap:operation soapAction="urn:greet" style="document"/>
+      <wsdl:input name="greet">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="greetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="greeting">
+    <wsdl:port binding="tns:greetingSoapBinding" name="GreetingServiceImplPort">
+      <soap:address location="http://localhost:8080/example-camel-cxf/greeting"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
