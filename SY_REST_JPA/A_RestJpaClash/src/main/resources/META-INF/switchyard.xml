@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:_1="urn:switchyard-component-bean:config:1.0" xmlns:jpa="urn:switchyard-component-camel-jpa:config:1.0" xmlns:rest="urn:switchyard-component-resteasy:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+  <sca:composite name="OrderService" targetNamespace="urn:switchyard-quickstart:resteasy-binding:1.0">
+    <sca:service name="OrderService" promote="OrderService/OrderService">
+      <rest:binding.rest>
+        <rest:interfaces>org.switchyard.quickstarts.rest.binding.OrderResource,org.switchyard.quickstarts.rest.binding.TestResource</rest:interfaces>
+        <rest:contextPath>rest-binding</rest:contextPath>
+      </rest:binding.rest>
+    </sca:service>
+    <sca:component name="OrderService">
+      <_1:implementation.bean class="org.switchyard.quickstarts.rest.binding.OrderServiceImpl"/>
+      <sca:service name="OrderService">
+        <sca:interface.java interface="org.switchyard.quickstarts.rest.binding.OrderService"/>
+      </sca:service>
+      <sca:reference name="StoreService">
+        <sca:interface.java interface="org.switchyard.quickstarts.rest.binding.jpa.StoreService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:reference name="StoreService" multiplicity="0..1" promote="OrderService/StoreService">
+      <sca:interface.java interface="org.switchyard.quickstarts.rest.binding.jpa.StoreService"/>
+      <jpa:binding.jpa name="jpa1">
+        <jpa:entityClassName>org.switchyard.quickstarts.rest.binding.jpa.Message</jpa:entityClassName>
+        <jpa:persistenceUnit>JpaEvents</jpa:persistenceUnit>
+        <jpa:transactionManager>#jtaTransactionManager</jpa:transactionManager>
+        <jpa:produce/>
+      </jpa:binding.jpa>
+    </sca:reference>
+  </sca:composite>
+  <domain>
+    <properties>
+      <property name="restPort" value="${org.switchyard.component.resteasy.standalone.port:8080}"/>
+      <property name="restPath" value="${org.switchyard.component.resteasy.standalone.path:/rest-binding}"/>
+    </properties>
+  </domain>
+</switchyard>
