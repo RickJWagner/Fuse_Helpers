@@ -3,7 +3,7 @@
 
 
 <!-- The serviceClass is a POJO that was generated from an external service's wsdl with wsconsume.
-          $JBOSS/bin/wsconsume.sh -k MyServiceWSDLRetreivedWithWGet.xml
+         $JBOSS/bin/wsconsume.sh -k MyServiceWSDLRetreivedWithWGet.xml
      The -k flag tells wsconsume to keep the source generated.  This is what is placed in the Camel project
      and referenced here.
 -->
