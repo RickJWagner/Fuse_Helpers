@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:rules="urn:switchyard-component-rules:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="rest-rules" targetNamespace="urn:com.example.switchyard:rest-rules:1.0">
+  <sca:composite name="rest-rules" targetNamespace="urn:com.example.switchyard:rest-rules:1.0">
+    <sca:component name="OrderServiceImpl">
+      <bean:implementation.bean class="com.example.switchyard.rest_rules.OrderServiceImpl"/>
+      <sca:service name="OrderService">
+        <sca:interface.java interface="com.example.switchyard.rest_rules.OrderService"/>
+      </sca:service>
+      <sca:reference name="RuleInterface">
+        <sca:interface.java interface="com.example.switchyard.rest_rules.RuleInterface"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="OrderService" promote="OrderServiceImpl/OrderService">
+      <sca:interface.java interface="com.example.switchyard.rest_rules.OrderService"/>
+      <resteasy:binding.rest name="OrderBinding">
+        <resteasy:interfaces>com.example.switchyard.rest_rules.OrderResource</resteasy:interfaces>
+        <resteasy:contextPath>GGL</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    
+    <sca:component name="RulesComponent">
+      <rules:implementation.rules>
+        <rules:manifest>
+          <rules:resources>
+            <rules:resource location="RulesComponent.drl" type="DRL"/>
+          </rules:resources>
+        </rules:manifest>
+            <rules:operations>
+
+          <rules:operation name="calculate" type="FIRE_ALL_RULES">
+            <rules:inputs>
+              <rules:input from="message.content"/>
+            </rules:inputs>
+            <rules:outputs>
+              <rules:output from="globals.Result" to="message.content"/>
+            </rules:outputs>
+          </rules:operation>
+        </rules:operations>
+    
+      </rules:implementation.rules>
+    
+      <sca:service name="RuleInterface">
+        <sca:interface.java interface="com.example.switchyard.rest_rules.RuleInterface"/>
+      </sca:service>
+    </sca:component>
+  </sca:composite>
+</sy:switchyard>

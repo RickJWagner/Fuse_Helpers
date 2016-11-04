@@ -1,0 +1,20 @@
+package com.example.switchyard.rest_rules
+import org.switchyard.Message
+global Message message
+global java.util.Map globals
+
+rule "RulesComponent"
+    when
+        $thelong : Long (intValue <= 2)
+    then
+        System.out.println("Hey! Less than 2");
+        globals.put("Result", new Long(2));
+end
+
+rule "RulesComponent2"
+    when
+        $thelong : Long (intValue > 2)
+    then
+        System.out.println("Hey!  Greater than 2");
+        globals.put("Result", new Long(5));
+end
