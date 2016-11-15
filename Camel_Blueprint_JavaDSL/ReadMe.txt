@@ -1,0 +1,1 @@
+Simple Camel Blueprint/Java application.
