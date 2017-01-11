@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions 
+   xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" 
+   xmlns:tns="http://sample.org/" 
+   xmlns:xws="http://sample.org/"
+   xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" 
+   xmlns:wsdl="http://example.ws" 
+   name="CallerArtifacts" 
+   targetNamespace="http://sample.org/" 
+   xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+
+  <import location="GreeterWS.wsdl" namespace="http://sample.org/"/>
+   
+  <plnk:partnerLinkType name="GreeterWSType">
+    <plnk:role name="GreeterProvider" portType="xws:GreeterWS"/>
+  </plnk:partnerLinkType>
+
+</definitions>

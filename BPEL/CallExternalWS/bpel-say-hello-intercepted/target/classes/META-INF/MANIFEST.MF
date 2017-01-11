@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1484170199805
+Build-Jdk: 1.8.0_102
+Built-By: rick
+Bundle-Description: Quickstart : BPEL Service : Say Hello
+Bundle-DocURL: http://jboss.org
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.html
+Bundle-ManifestVersion: 2
+Bundle-Name: SwitchYard Quickstart: bpel-say-hello
+Bundle-SymbolicName: org.switchyard.quickstarts.switchyard.bpel.say.hell
+ o
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 2.0.1.redhat-621084
+Created-By: Apache Maven Bundle Plugin
+DynamicImport-Package: org.switchyard,org.switchyard.*
+Embed-Dependency: !*
+Export-Package: org.sample;uses:="javax.inject,javax.jws,org.jboss.ws.ap
+ i.annotation,org.switchyard";version="2.0.1.redhat-621084"
+Import-Package: javax.inject,javax.jws,org.jboss.ws.api.annotation,org.s
+ witchyard;version="[2.0,3)"
+Project-Artifact-Id: switchyard-bpel-say-hello
+Project-Group-Id: org.switchyard.quickstarts
+Project-Version: 2.0.1.redhat-621084
+Tool: Bnd-2.1.0.20130426-122213

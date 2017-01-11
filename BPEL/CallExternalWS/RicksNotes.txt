@@ -1,0 +1,2 @@
+
+Contains a simple web service that is called from BPEL, and a BPEL project (based on Fuse 6.2.1 quickstarts) that calls it.
