@@ -69,25 +69,6 @@
                  operation="sayHello" variable="ReceiveSayHelloVar"
                  createInstance="yes"/>
         
-        <!-- Generate reply to synchronous request -->
-        <bpel:assign validate="no" name="AssignName">
-            <bpel:copy>
-                <bpel:from><bpel:literal><tns:HelloWorldResponse xmlns:tns="http://www.jboss.org/bpel/examples" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <tns:result></tns:result>
-</tns:HelloWorldResponse>
-</bpel:literal></bpel:from>
-                <bpel:to variable="ReplySayHelloVar" part="parameters"></bpel:to>
-            </bpel:copy>
-            <bpel:copy>
-                <bpel:from>
-                    <![CDATA[concat('Hello ', $ReceiveSayHelloVar.parameters/tns:input)]]>
-                </bpel:from>
-                <bpel:to part="parameters" variable="ReplySayHelloVar">
-                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[tns:result]]></bpel:query>
-                </bpel:to>
-            </bpel:copy>
-        </bpel:assign>
-
         
         <bpel:assign validate="no" name="AssignInvokeVar">
             <bpel:copy>
