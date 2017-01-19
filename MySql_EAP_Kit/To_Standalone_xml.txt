@@ -1,0 +1,15 @@
+
+                <datasource jndi-name="java:jboss/datasources/MySQLDS" pool-name="MySQLDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:mysql://172.17.0.2:3306/ricks_db</connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>soa</user-name>
+                        <password>soa</password>
+                    </security>
+                </datasource>
+
+
+
+		   <driver name="mysql" module="com.mysql">
+                       <driver-class>com.mysql.jdbc.Driver</driver-class>
+                   </driver>  
