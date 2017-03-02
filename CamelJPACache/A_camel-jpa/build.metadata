@@ -1,0 +1,15 @@
+# Created by buildmetadata-maven-plugin 1.7.0 ( SHA: 6f444cae ) 
+build.artifactId=example-camel-jpa
+build.groupId=org.wildfly.camel
+build.java.compiler=HotSpot 64-Bit Tiered Compilers
+build.java.runtime.name=OpenJDK Runtime Environment
+build.java.runtime.version=1.8.0_102-b14
+build.java.vendor=Oracle Corporation
+build.java.vm=OpenJDK 64-Bit Server VM
+build.maven.execution.cmdline=install -Pdeploy
+build.maven.version=3.3.9
+build.scmRevision.date=01.03.2017
+build.scmRevision.id=e2c6eb2652789c68c84cb6625a9c32de20bac9fc
+build.scmRevision.url=scm\:git\:git\://github.com/jboss-fuse/wildfly-camel.git/wildfly-camel-example/example-camel-jpa
+build.version=2.4.0.redhat-630187
+build.version.full=2.4.0.redhat-630187re2c6eb2652789c68c84cb6625a9c32de20bac9fc
