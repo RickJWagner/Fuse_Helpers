@@ -1,0 +1,15 @@
+# Created by buildmetadata-maven-plugin 1.7.0 ( SHA: 6f444cae ) 
+build.artifactId=example-camel-rest
+build.groupId=org.wildfly.camel
+build.java.compiler=HotSpot 64-Bit Tiered Compilers
+build.java.runtime.name=Java(TM) SE Runtime Environment
+build.java.runtime.version=1.8.0_101-b13
+build.java.vendor=Oracle Corporation
+build.java.vm=Java HotSpot(TM) 64-Bit Server VM
+build.maven.execution.cmdline=clean package
+build.maven.version=3.3.9
+build.scmRevision.date=02.03.2017
+build.scmRevision.id=518f3f92513a4302621fe943c36363f8412ebac0
+build.scmRevision.url=scm\:git\:git\://github.com/jboss-fuse/wildfly-camel.git/wildfly-camel-example/example-camel-rest
+build.version=2.4.0.redhat-630187
+build.version.full=2.4.0.redhat-630187r518f3f92513a4302621fe943c36363f8412ebac0
