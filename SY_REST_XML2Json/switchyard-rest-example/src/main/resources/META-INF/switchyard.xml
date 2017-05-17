@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="switchyard-rest-example" targetNamespace="urn:com.example.switchyard:switchyard-rest-example:1.0">
+  <sca:composite name="switchyard-rest-example" targetNamespace="urn:com.example.switchyard:switchyard-rest-example:1.0">
+    <sca:component name="Route">
+      <camel:implementation.camel>
+        <camel:xml path="logical.xml"/>
+      </camel:implementation.camel>
+      <sca:service name="MyService">
+        <sca:interface.wsdl interface="MyService.wsdl#wsdl.porttype(MyService)"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="MyService" promote="Route/MyService">
+      <sca:interface.wsdl interface="MyService.wsdl#wsdl.porttype(MyService)"/>
+      <resteasy:binding.rest name="rest">
+        <resteasy:interfaces>com.example.switchyard.switchyard_rest_example.TestResource</resteasy:interfaces>
+        <resteasy:contextPath>MYCONTEXT</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+  </sca:composite>
+  <sy:domain>
+    <sy:properties>
+      <sy:property name="org.switchyard.handlers.messageTrace.enabled" value="false"/>
+    </sy:properties>
+  </sy:domain>
+</sy:switchyard>

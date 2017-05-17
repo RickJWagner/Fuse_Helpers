@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd        
+        http://camel.apache.org/schema/spring 
+        http://camel.apache.org/schema/spring/camel-spring.xsd
+        http://camel.apache.org/schema/cxf
+        http://camel.apache.org/schema/cxf/camel-cxf.xsd" >
+   
+
+    <camelContext id="xml2json_context"
+        xmlns="http://camel.apache.org/schema/spring" xmlns:order="http://fabric8.com/examples/order/v7">
+
+        <dataFormats>
+            <xmljson id="xmljson"/>
+        </dataFormats>
+    
+        <route id="converter_route">
+            <from id="_from2" uri="direct-vm:convert"/>
+            <log id="_log1" message="Converter got message:${body}"/>
+            <marshal ref="xmljson"/>
+            <log id="_log2" message="Converter after marshal:${body}"/>
+        </route>
+    
+    
+    </camelContext>
+
+
+
+
+</beans>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes id="routes-92fe97ef-f11b-4337-9d8e-317e84c9906e" xmlns="http://camel.apache.org/schema/spring">
+    <route id="rest_route">
+        <from id="_from1" uri="switchyard://MyService"/>
+        <log id="_log1" message="INPUT: ${body}"/>
+		<to id="_to1" uri="direct-vm:convert"/>
+		<convertBodyTo type="java.lang.String"/>
+        <log id="_log2" message="OUTPUT: ${body}"/>
+    </route>
+</routes>
