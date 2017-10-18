@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://camel.apache.org/schema/spring          http://camel.apache.org/schema/spring/camel-spring.xsd         http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/context          http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean class="org.springframework.jndi.JndiTemplate" id="jndiTemplate">
+        <property name="environment">
+            <props>
+                <prop key="java.naming.factory.initial">org.jboss.naming.remote.client.InitialContextFactory</prop>
+                <prop key="java.naming.provider.url">remote://localhost:4447</prop>
+                <prop key="java.naming.security.principal">admin</prop>
+                <prop key="java.naming.security.credentials">Password1!</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="org.springframework.jndi.JndiObjectFactoryBean" id="jmsQueueConnectionFactory">
+        <property name="jndiTemplate">
+            <ref bean="jndiTemplate"/>
+        </property>
+        <property name="jndiName">
+            <value>java:jms/RemoteConnectionFactory</value>
+        </property>
+    </bean>
+    <bean
+        class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter" id="authenticatedConnectionFactory">
+        <property name="targetConnectionFactory" ref="jmsQueueConnectionFactory"/>
+        <property name="username" value="rick"/>
+        <property name="password" value="Password1!"/>
+    </bean>
+    <bean class="org.apache.camel.component.jms.JmsComponent"
+        id="bean-4b28a9c8-d1fd-41e3-b34e-8e4790630048" name="jms">
+        <!--  <property name="connectionFactory" ref="jmsQueueConnectionFactory"/>  -->
+        <property name="connectionFactory" ref="authenticatedConnectionFactory"/>
+        <!--  Tried every value for cacheLevelName, none of them change failover behavior -->
+        <!-- 
+         <property name="cacheLevelName" value="CACHE_AUTO" />
+          -->
+    </bean>
+    <camelContext id="example-context"
+        xmlns="http://camel.apache.org/schema/spring" xmlns:order="http://com.mycompany/examples/order">
+        <!-- a route to generate an order every 5th second -->
+        <route id="generate-order">
+            <from id="timerToGenerateOrder" uri="timer:order?period=5000&amp;delay=2000&amp;fixedRate=true"/>
+            <log id="logReceivingOrder" message="Receiving order"/>
+            <to id="_to1" uri="jms:queue:TestQ1"/>
+            <log id="end" message="Forwarded to HQ"/>
+        </route>
+    </camelContext>
+</beans>
