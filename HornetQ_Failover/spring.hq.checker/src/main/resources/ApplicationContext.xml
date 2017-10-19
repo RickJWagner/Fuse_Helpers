@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean class="org.springframework.jndi.JndiTemplate" id="jndiTemplate">
+        <property name="environment">
+            <props>
+                <prop key="java.naming.factory.initial">org.jboss.naming.remote.client.InitialContextFactory</prop>
+                <prop key="java.naming.provider.url">remote://localhost:4447</prop>
+                <prop key="java.naming.security.principal">admin</prop>
+                <prop key="java.naming.security.credentials">Password1!</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="org.springframework.jndi.JndiObjectFactoryBean" id="jmsQueueConnectionFactory">
+        <property name="jndiTemplate">
+            <ref bean="jndiTemplate"/>
+        </property>
+        <property name="jndiName">
+            <value>java:jms/RemoteConnectionFactory</value>
+        </property>
+    </bean>
+    <bean
+        class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter" id="authenticatedConnectionFactory">
+        <property name="targetConnectionFactory" ref="jmsQueueConnectionFactory"/>
+        <property name="username" value="rick"/>
+        <property name="password" value="Password1!"/>
+    </bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="authenticatedConnectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="destination" />
+	</bean>
+
+    <bean id="destination" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiTemplate">
+            <ref bean="jndiTemplate"/>
+        </property>
+        <property name="jndiName">
+            <value>jms/queue/TestQ1</value>
+        </property>
+
+    </bean>
+
+
+	<bean id="springJmsProducer" class="org.example.SpringJmsProducer">
+		<!--  <property name="destination" ref="messageDestination" />    -->
+		<property name="jmsTemplate" ref="jmsTemplate" />
+	</bean>
+
+	<bean id="springJmsConsumer" class="org.example.SpringJmsConsumer">
+		<!--  <property name="destination" ref="messageDestination" />   -->
+		<property name="jmsTemplate" ref="jmsTemplate" />
+	</bean>
+</beans>
