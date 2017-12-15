@@ -3,7 +3,7 @@
 ------------------
 #!/bin/bash
 
-#  -- set the directory in which byteman has been installed
+# -- set the directory in which byteman has been installed
 BYTEMAN_HOME=/home/rick/Tools/B/Byteman/byteman-download-3.0.6
 
 BYTEMAN_JAR=/home/rick/Tools/B/Byteman/byteman-download-3.0.6/lib/byteman.jar
