@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PaginatedAlphabetGetterService" targetNamespace="http://sample.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://sample.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+<import namespace="http://sample.org/" schemaLocation="PaginatedAlphabetGetterService_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="getAlphabetPortion">
+    <wsdl:part name="parameters" element="tns:getAlphabetPortion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAlphabetPortionResponse">
+    <wsdl:part name="parameters" element="tns:getAlphabetPortionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part name="Exception" element="tns:Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PaginatedAlphabetGetter">
+    <wsdl:operation name="getAlphabetPortion">
+      <wsdl:input name="getAlphabetPortion" message="tns:getAlphabetPortion">
+    </wsdl:input>
+      <wsdl:output name="getAlphabetPortionResponse" message="tns:getAlphabetPortionResponse">
+    </wsdl:output>
+      <wsdl:fault name="Exception" message="tns:Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaginatedAlphabetGetterServiceSoapBinding" type="tns:PaginatedAlphabetGetter">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAlphabetPortion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAlphabetPortion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAlphabetPortionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaginatedAlphabetGetterService">
+    <wsdl:port name="PaginatedAlphabetGetterPort" binding="tns:PaginatedAlphabetGetterServiceSoapBinding">
+      <soap:address location="http://localhost:9090/PaginatedAlphabetGetterPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
