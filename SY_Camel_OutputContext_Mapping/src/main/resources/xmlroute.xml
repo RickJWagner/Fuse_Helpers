@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <camelContext id="camelContext1" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_from1" uri="switchyard://JavaDSL"/>
+            <log id="_log0" message="JavaDSL - message received: ${body}"/>
+            <doTry id="_doTry1">
+                <bean
+                    beanType="org.switchyard.quickstarts.camel.service.CustomAction" id="_bean1"/>
+                <log id="_log2" message="Done with try block."/>
+                <doCatch id="_doCatch1">
+                    <exception>java.lang.Exception</exception>
+                    <log id="_log3" message="In the doCatch block...."/>
+                    <setBody id="_setBody1">
+                        <!--  These things will not propagate to the HTTP caller  -->
+                        <!--  Instead, we must do something in the Composer.  See class 'CustomComposer' for an effective action. -->
+                        <constant>
+						{
+							"message": "Internal Server error",
+							"statusCode": "500"
+						}
+					</constant>
+                    </setBody>
+                    <handled>
+                        <constant>false</constant>
+                    </handled>
+                </doCatch>
+                <log id="_log4" message="Outside the doCatch block...."/>
+            </doTry>
+        </route>
+    </camelContext>
+</beans>
