@@ -1,0 +1,22 @@
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue1:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue2:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue3:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue4:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue5:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue6:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue7:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue8:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue9:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue10:add(max-delivery-attempts=1)
+/subsystem=messaging/hornetq-server=default/address-setting=jms.queue.GreetingServiceQueue11:add(max-delivery-attempts=1)
+jms-queue add --queue-address=GreetingServiceQueue1 --entries=java:/jms/queue/GreetingServiceQueue1
+jms-queue add --queue-address=GreetingServiceQueue2 --entries=java:/jms/queue/GreetingServiceQueue2	
+jms-queue add --queue-address=GreetingServiceQueue3 --entries=java:/jms/queue/GreetingServiceQueue3
+jms-queue add --queue-address=GreetingServiceQueue4 --entries=java:/jms/queue/GreetingServiceQueue4
+jms-queue add --queue-address=GreetingServiceQueue5 --entries=java:/jms/queue/GreetingServiceQueue5
+jms-queue add --queue-address=GreetingServiceQueue6 --entries=java:/jms/queue/GreetingServiceQueue6
+jms-queue add --queue-address=GreetingServiceQueue7 --entries=java:/jms/queue/GreetingServiceQueue7
+jms-queue add --queue-address=GreetingServiceQueue8 --entries=java:/jms/queue/GreetingServiceQueue8
+jms-queue add --queue-address=GreetingServiceQueue9 --entries=java:/jms/queue/GreetingServiceQueue9
+jms-queue add --queue-address=GreetingServiceQueue10 --entries=java:/jms/queue/GreetingServiceQueue10
+jms-queue add --queue-address=GreetingServiceQueue11 --entries=java:/jms/queue/GreetingServiceQueue11

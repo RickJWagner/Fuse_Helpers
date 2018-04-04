@@ -1,0 +1,8 @@
+
+To run these batch files, connect to cli then:
+
+batch --file=/home/rick/Tools/A/FSW6.0/Install/jboss-eap-6.1/quickstarts/switchyard/A_JMS_Repeated/cli_scripts/add_queues.cli
+list-batch
+run-batch
+
+

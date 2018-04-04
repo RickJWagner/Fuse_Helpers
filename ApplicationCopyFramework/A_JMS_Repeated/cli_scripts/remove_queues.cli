@@ -1,0 +1,11 @@
+jms-queue remove --queue-address=GreetingServiceQueue1
+jms-queue remove --queue-address=GreetingServiceQueue2
+jms-queue remove --queue-address=GreetingServiceQueue3
+jms-queue remove --queue-address=GreetingServiceQueue4
+jms-queue remove --queue-address=GreetingServiceQueue5
+jms-queue remove --queue-address=GreetingServiceQueue6
+jms-queue remove --queue-address=GreetingServiceQueue7
+jms-queue remove --queue-address=GreetingServiceQueue8
+jms-queue remove --queue-address=GreetingServiceQueue9
+jms-queue remove --queue-address=GreetingServiceQueue10
+jms-queue remove --queue-address=GreetingServiceQueue11
