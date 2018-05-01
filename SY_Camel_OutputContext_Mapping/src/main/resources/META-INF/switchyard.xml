@@ -29,7 +29,7 @@
       <sca:interface.java interface="org.switchyard.quickstarts.camel.service.JavaDSL"/>
       <http:binding.http name="http1">
         <operationSelector operationName="acceptMessage"/>
-        <http:contextMapper includes=".*"/>
+	<http:contextMapper class="org.switchyard.quickstarts.camel.service.CustomMapper" includes=".*" excludes="CamelMessageHistory" /> 
         <http:messageComposer class="org.switchyard.quickstarts.camel.service.CustomComposer"/>
         <http:contextPath>mypath</http:contextPath>
       </http:binding.http>
