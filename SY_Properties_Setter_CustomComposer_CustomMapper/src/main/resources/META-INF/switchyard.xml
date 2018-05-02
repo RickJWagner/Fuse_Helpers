@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:http="urn:switchyard-component-http:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="SY_Properties_Setter" targetNamespace="urn:com.example.switchyard:SY_Properties_Setter:1.0">
+  <sca:composite name="SY_Properties_Setter" targetNamespace="urn:com.example.switchyard:SY_Properties_Setter:1.0">
+    <sca:component name="MessageProcessorBean">
+      <camel:implementation.camel>
+        <camel:java class="com.example.switchyard.SY_Properties_Setter.MessageProcessorRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="MessageProcessor">
+        <sca:interface.java interface="com.example.switchyard.SY_Properties_Setter.MessageProcessor"/>
+      </sca:service>
+      <sca:reference name="CamelProcess">
+        <sca:interface.java interface="com.example.switchyard.SY_Properties_Setter.CamelProcess"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="MessageProcessor" promote="MessageProcessorBean/MessageProcessor">
+      <sca:interface.java interface="com.example.switchyard.SY_Properties_Setter.MessageProcessor"/>
+      <http:binding.http name="http1">
+        <sy:operationSelector operationName="process"/>
+        <http:contextMapper class="com.example.switchyard.SY_Properties_Setter.CustomMapper" excludes="CamelMessageHistory" includes=".*"/>
+        <http:messageComposer class="com.example.switchyard.SY_Properties_Setter.CustomComposer"/>
+        <http:contextPath>mypath</http:contextPath>
+      </http:binding.http>
+    </sca:service>
+    <sca:component name="Route">
+      <camel:implementation.camel>
+        <camel:xml path="route.xml"/>
+      </camel:implementation.camel>
+      <sca:service name="CamelProcess">
+        <sca:interface.java interface="com.example.switchyard.SY_Properties_Setter.CamelProcess"/>
+      </sca:service>
+    </sca:component>
+  </sca:composite>
+  <sy:domain>
+    <sy:properties>
+      <sy:property name="org.switchyard.handlers.messageTrace.enabled" value="false"/>
+    </sy:properties>
+  </sy:domain>
+</sy:switchyard>

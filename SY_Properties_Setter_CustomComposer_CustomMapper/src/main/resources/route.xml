@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes id="routes-863fa73c-026a-40bf-b0db-982e150dc3dd" xmlns="http://camel.apache.org/schema/spring">
+    <route id="_route1">
+        <from id="_from1" uri="switchyard://CamelProcess"/>
+        <log id="_log1" message="CamelProcess - message received: ${body}"/>
+        <setBody id="_setBody1">
+            <simple>Camel said this.</simple>
+        </setBody>
+    </route>
+</routes>
