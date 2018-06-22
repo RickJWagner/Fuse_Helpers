@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="sy-ejb" targetNamespace="urn:com.example.switchyard:sy-ejb:1.0">
+  <sca:composite name="sy-ejb" targetNamespace="urn:com.example.switchyard:sy-ejb:1.0">
+    <sca:component name="MsgLowerBean">
+      <bean:implementation.bean class="com.example.switchyard.sy_ejb.MsgLowerBean"/>
+      <sca:service name="MsgLower">
+        <sca:interface.java interface="com.example.switchyard.sy_ejb.MsgLower"/>
+      </sca:service>
+      <sca:reference name="SomeOtherSvc">
+        <sca:interface.java interface="com.example.switchyard.sy_ejb.SomeOtherSvc"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="MsgLower" promote="MsgLowerBean/MsgLower">
+      <sca:interface.java interface="com.example.switchyard.sy_ejb.MsgLower"/>
+      <sca:binding.sca name="sca1"/>
+    </sca:service>
+    <sca:component name="SomeOtherSvcBean">
+      <bean:implementation.bean class="com.example.switchyard.sy_ejb.SomeOtherSvcBean"/>
+      <sca:service name="SomeOtherSvc">
+        <sca:interface.java interface="com.example.switchyard.sy_ejb.SomeOtherSvc"/>
+      </sca:service>
+    </sca:component>
+  </sca:composite>
+</sy:switchyard>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    
+	<route messageHistory="false" >
+        <from uri="switchyard://MyService"/>
+        <setBody>
+           <simple>SomeMsg</simple>
+        </setBody>
+        <log message="About to call Remote EJB from this Camel Route used in SY (Producer)" />
+        <to uri="switchyard://MsgAppender" />
+        <log message="Back from EJB call....${body}" />
+		<setBody>
+			<simple>&lt;NewOperationResponse&gt;&lt;out&gt;Success&lt;/out&gt;&lt;/NewOperationResponse&gt;</simple>
+		</setBody>
+	</route>
+</routes>
