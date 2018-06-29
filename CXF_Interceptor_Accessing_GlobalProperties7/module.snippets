@@ -1,0 +1,17 @@
+
+
+------ The module contents -------------
+
+org/mymodules/
+└── main
+    ├── module.xml
+    └── my.properties.jar    // contains only a properties file, zipped into a jar.  The module.xml file specifies this jar.
+
+
+----- Standalone.xml specifies the global module -------------------- 
+
+       <subsystem xmlns="urn:jboss:domain:ee:4.0">
+            <global-modules>
+                <module name="org.mymodules" slot="main"/>
+            </global-modules>
+
