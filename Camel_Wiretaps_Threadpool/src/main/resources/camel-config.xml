@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<!-- START SNIPPET: e1 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+  <!-- We still need it for loading the CXFServlet --> 
+  <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+  <routeContext id="rc0" xmlns="http://camel.apache.org/schema/spring">
+         <route id="route0">
+            <from id="_from0" uri="timer://foo?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <log id="_log0" message="Route 0 runs"/>
+        </route>
+</routeContext>
+ 
+
+  <routeContext id="rc1" xmlns="http://camel.apache.org/schema/spring">
+
+         <route id="route1">
+            <from id="_from1" uri="timer://foo1d1?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <log id="_log1" message="Route 1 runs"/>
+        </route>
+
+        <route id="route2">
+            <from id="_from2" uri="timer://foo1d2?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <log id="_log2" message="Route 2 runs"/>
+        </route>
+
+         <route id="route3">
+            <from id="_from3" uri="timer://foo1d3?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <log id="_log3" message="Route 3 runs"/>
+        </route>
+
+        <route id="route4">
+            <from id="_from4" uri="timer://foo1d4?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <log id="_log4" message="Route 4 runs"/>
+        </route>
+
+        <route id="route5">
+            <from id="_from5" uri="timer://foo1d5?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <log id="_log5" message="Route 5 runs"/>
+        </route>
+       
+  </routeContext>
+
+<!-- **************************************************************************************** -->
+
+  <routeContext id="rc2" xmlns="http://camel.apache.org/schema/spring">
+
+         <route id="route2d1">
+            <from id="_from2d1" uri="timer://foo2d1?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <log id="_log2d1" message="Route 2d1 runs"/>
+        </route>
+
+        <route id="route2d2">
+            <from id="_from2d2" uri="timer://foo2d2?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <log id="_log2d2" message="Route 2d2 runs"/>
+        </route>
+
+         <route id="route2d3">
+            <from id="_from2d3" uri="timer://foo2d3?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <log id="_log2d3" message="Route 2d3 runs"/>
+        </route>
+
+        <route id="route2d4">
+            <from id="_from2d4" uri="timer://foo2d4?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <log id="_log2d4" message="Route 2d4 runs"/>
+        </route>
+
+        <route id="route2d5">
+            <from id="_from2d5" uri="timer://foo2d5?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <log id="_log2d5" message="Route 2d5 runs"/>
+        </route>
+       
+  </routeContext>
+
+  <!-- **************************************************************************************** -->
+
+  <routeContext id="rc3" xmlns="http://camel.apache.org/schema/spring">
+
+         <route id="route3d1">
+            <from id="_from3d1" uri="timer://foo3d1?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log3d1" message="Route 3d1 runs"/>
+        </route>
+
+        <route id="route3d2">
+            <from id="_from3d2" uri="timer://foo3d2?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log3d2" message="Route 3d2 runs"/>
+        </route>
+
+         <route id="route3d3">
+            <from id="_from3d3" uri="timer://foo3d3?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log3d3" message="Route 3d3 runs"/>
+        </route>
+
+        <route id="route3d4">
+            <from id="_from3d4" uri="timer://foo3d4?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log3d4" message="Route 3d4 runs"/>
+        </route>
+
+        <route id="route3d5">
+            <from id="_from3d5" uri="timer://foo3d5?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log3d5" message="Route 3d5 runs"/>
+        </route>
+
+  </routeContext>
+
+ <!-- **************************************************************************************** -->
+
+  <routeContext id="rc4" xmlns="http://camel.apache.org/schema/spring">
+
+         <route id="route4d1">
+            <from id="_from4d1" uri="timer://foo4d1?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log4d1" message="Route 4d1 runs"/>
+        </route>
+
+        <route id="route4d2">
+            <from id="_from4d2" uri="timer://foo4d2?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log4d2" message="Route 4d2 runs"/>
+        </route>
+
+         <route id="route4d3">
+            <from id="_from4d3" uri="timer://foo4d3?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log4d3" message="Route 4d3 runs"/>
+        </route>
+
+        <route id="route4d4">
+            <from id="_from4d4" uri="timer://foo4d4?fixedRate=true&amp;period=15000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log4d4" message="Route 4d4 runs"/>
+        </route>
+
+        <route id="route4d5">
+            <from id="_from4d5" uri="timer://foo4d5?fixedRate=true&amp;period=10000&amp;delay=500"/>
+            <wireTap uri="direct:catcher" executorServiceRef="myPool"/>
+            <log id="_log4d5" message="Route 4d5 runs"/>
+        </route>
+
+  </routeContext>
+         
+  <routeContext id="CatcherRouteContext" xmlns="http://camel.apache.org/schema/spring">      
+    <route id="CatcherRoute">
+            <from id="_Catcher" uri="direct:catcher"/>
+            <log id="_CatcherLog" message="Catcher runs"/>
+    </route>
+  </routeContext>
+
+
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <routeContextRef ref="rc0" />
+    <routeContextRef ref="rc1" />
+    <routeContextRef ref="rc2" />
+    <routeContextRef ref="rc3" />
+    <routeContextRef ref="rc4" /> 
+    <routeContextRef ref="CatcherRouteContext" />
+    <threadPool id="myPool" poolSize="10" maxPoolSize="20" threadName="myPool"/>
+    
+  </camelContext>
+
+</beans>
+<!-- END SNIPPET: e1 -->
