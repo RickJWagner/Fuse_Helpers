@@ -1,0 +1,187 @@
+Script started on 2018-08-22 10:23:12-05:00
+krick@DESKTOP-C47TI0G:~/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml\[rick@DESKTOP-C47TI0G spring-boot-camel-xml]$ sp[K[Kmvn spring-boot:run
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective settings
+[WARNING] 'profiles.profile[fsw-online-repos].repositories.repository.id' must be unique but found duplicate repository with id jboss-public-repository @ /home/rick/.m2/settings.xml
+[WARNING] 
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Fabric8 :: Quickstarts :: Spring-Boot :: Camel XML 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:1.5.4.RELEASE:run (default-cli) > test-compile @ spring-boot-camel-xml >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ spring-boot-camel-xml ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- fabric8-maven-plugin:3.5.34:resource (default) @ spring-boot-camel-xml ---
+[INFO] [32mF8: Running in [34mOpenShift[32m mode[m
+[INFO] [32mF8: Using docker image name of namespace: default[m
+[INFO] [32mF8: Running generator spring-boot[m
+[INFO] [32mF8: spring-boot: Using Docker image fabric8/java-jboss-openjdk8-jdk:1.3 as base / builder[m
+[INFO] [32mF8: using resource templates from /home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml/src/main/fabric8[m
+[INFO] [32mF8: fmp-service: Adding a default service 'spring-boot-camel-xml' with ports [8080][m
+[INFO] [32mF8: spring-boot-health-check: Adding readiness probe on port 8081, path='/health', scheme='HTTP', with initial delay 10 seconds[m
+[INFO] [32mF8: spring-boot-health-check: Adding liveness probe on port 8081, path='/health', scheme='HTTP', with initial delay 180 seconds[m
+[INFO] [32mF8: fmp-revision-history: Adding revision history limit to 2[m
+[INFO] [32mF8: f8-icon: Adding icon for deployment[m
+[INFO] [32mF8: f8-icon: Adding icon for service[m
+[INFO] [32mF8: validating /home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml/target/classes/META-INF/fabric8/openshift/spring-boot-camel-xml-deploymentconfig.yml resource[m
+[WARNING] [33mF8: [33mInvalid Resource : /home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml/target/classes/META-INF/fabric8/openshift/spring-boot-camel-xml-deploymentconfig.yml
+[message=.spec.template.spec.containers[0].resources.requests.memory: string found, object expected, violation type=type]
+[message=.spec.template.spec.containers[0].resources.requests.cpu: string found, object expected, violation type=type]
+[message=.spec.template.spec.containers[0].resources.limits.memory: string found, object expected, violation type=type]
+[message=.spec.template.spec.containers[0].resources.limits.cpu: string found, object expected, violation type=type][33m[m
+[INFO] [32mF8: validating /home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml/target/classes/META-INF/fabric8/kubernetes/spring-boot-camel-xml-deployment.yml resource[m
+[WARNING] [33mF8: [33mInvalid Resource : /home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml/target/classes/META-INF/fabric8/kubernetes/spring-boot-camel-xml-deployment.yml
+[message=.spec.template.spec.containers[0].resources.requests.cpu: string found, object expected, violation type=type]
+[message=.spec.template.spec.containers[0].resources.limits.cpu: string found, object expected, violation type=type]
+[message=.spec.template.spec.containers[0].resources.limits.memory: string found, object expected, violation type=type]
+[message=.spec.template.spec.containers[0].resources.requests.memory: string found, object expected, violation type=type][33m[m
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:compile (default-compile) @ spring-boot-camel-xml ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ spring-boot-camel-xml ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:testCompile (default-testCompile) @ spring-boot-camel-xml ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:1.5.4.RELEASE:run (default-cli) < test-compile @ spring-boot-camel-xml <<<
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:1.5.4.RELEASE:run (default-cli) @ spring-boot-camel-xml ---
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+[32m :: Spring Boot :: [39m      [2m (v1.5.4.RELEASE)[0;39m
+
+10:23:26.602 [main] INFO  i.f.quickstarts.camel.Application - Starting Application on DESKTOP-C47TI0G with PID 19575 (/home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml/target/classes started by rick in /home/rick/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml)
+10:23:26.604 [main] INFO  i.f.quickstarts.camel.Application - No active profile set, falling back to default profiles: default
+10:23:26.648 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6572f053: startup date [Wed Aug 22 10:23:26 CDT 2018]; root of context hierarchy
+10:23:26.734 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.5.Final
+10:23:27.086 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [spring/camel-context.xml]
+10:23:28.448 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.apache.camel.spring.boot.CamelAutoConfiguration' of type [org.apache.camel.spring.boot.CamelAutoConfiguration$$EnhancerBySpringCGLIB$$365c6fd0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+10:23:28.611 [main] INFO  org.xnio - XNIO version 3.3.6.Final
+10:23:28.621 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.6.Final
+10:23:28.685 [main] WARN  io.undertow.websockets.jsr - UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+10:23:28.685 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+10:23:28.701 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+10:23:28.701 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2056 ms
+10:23:28.856 [main] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+10:23:28.860 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+10:23:28.860 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+10:23:28.860 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+10:23:28.860 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+10:23:28.861 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+10:23:28.861 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+10:23:28.861 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+10:23:29.408 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6572f053: startup date [Wed Aug 22 10:23:26 CDT 2018]; root of context hierarchy
+10:23:29.477 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+10:23:29.478 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+10:23:29.514 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+10:23:29.515 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+10:23:29.559 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+10:23:29.629 [main] INFO  o.a.c.i.c.DefaultTypeConverter - Loaded 196 type converters
+10:23:30.305 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+10:23:30.310 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Registering beans for JMX exposure on startup
+10:23:30.313 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@580cc263: startup date [Wed Aug 22 10:23:30 CDT 2018]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6572f053
+10:23:30.352 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Overriding bean definition for bean 'handlerExceptionResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration; factoryMethodName=handlerExceptionResolver; initMethodName=null; destroyMethodName=(inferred); defined in org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=endpointWebMvcChildContextConfiguration; factoryMethodName=compositeHandlerExceptionResolver; initMethodName=null; destroyMethodName=(inferred); defined in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcChildContextConfiguration]
+10:23:30.388 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+10:23:30.389 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 76 ms
+10:23:30.390 [main] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+10:23:30.430 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+10:23:30.442 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.boot.actuate.endpoint.mvc.ManagementErrorEndpoint.invoke()
+10:23:30.447 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+10:23:30.447 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+10:23:30.458 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@580cc263: startup date [Wed Aug 22 10:23:30 CDT 2018]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6572f053
+10:23:30.546 [main] INFO  o.s.b.c.e.u.UndertowEmbeddedServletContainer - Undertow started on port(s) 8081 (http)
+10:23:30.550 [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 0
+10:23:30.556 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'healthEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=healthEndpoint]
+10:23:30.596 [main] INFO  o.a.c.spring.boot.RoutesCollector - Loading additional Camel XML routes from: classpath:camel/*.xml
+10:23:30.597 [main] INFO  o.a.c.spring.boot.RoutesCollector - Loading additional Camel XML rests from: classpath:camel-rest/*.xml
+10:23:30.597 [main] INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.19.1 (CamelContext: camel) is starting
+10:23:30.598 [main] INFO  o.a.c.m.ManagedManagementStrategy - JMX is enabled
+10:23:30.676 [main] INFO  o.a.c.i.DefaultRuntimeEndpointRegistry - Runtime endpoint registry is in extended mode gathering usage statistics of all incoming and outgoing endpoints (cache limit: 1000)
+10:23:30.775 [main] INFO  o.a.camel.spring.SpringCamelContext - StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+10:23:30.877 [main] INFO  o.a.camel.spring.SpringCamelContext - Route: simple-route started and consuming from: timer://foo?period=2000
+10:23:30.879 [main] INFO  o.a.camel.spring.SpringCamelContext - Route: route1 started and consuming from: timer://foo2?period=10s
+10:23:30.886 [main] INFO  org.restlet.Component.Server - Starting the internal [HTTP/1.1] server on port 9090
+10:23:30.889 [main] INFO  o.a.camel.spring.SpringCamelContext - Route: ping started and consuming from: http://0.0.0.0:9090/rest/ping?restletMethods=GET
+10:23:30.890 [main] INFO  o.a.camel.spring.SpringCamelContext - Total 3 routes, of which 3 are started.
+10:23:30.891 [main] INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.19.1 (CamelContext: camel) started in 0.293 seconds
+10:23:30.920 [main] INFO  o.s.b.c.e.u.UndertowEmbeddedServletContainer - Undertow started on port(s) 8080 (http)
+10:23:30.926 [main] INFO  i.f.quickstarts.camel.Application - Started Application in 4.802 seconds (JVM running for 10.686)
+10:23:31.905 [Camel (camel) thread #1 - timer://foo2] INFO  route1 - ### Hey! Camel route runs!  ###
+10:23:31.909 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 345
+10:23:33.896 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 706
+10:23:35.892 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 349
+10:23:37.892 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 936
+10:23:39.891 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 742
+10:23:41.890 [Camel (camel) thread #1 - timer://foo2] INFO  route1 - ### Hey! Camel route runs!  ###
+10:23:41.891 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 743
+10:23:43.891 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 049
+10:23:45.892 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 772
+10:23:47.892 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 839
+10:23:49.894 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 883
+10:23:51.891 [Camel (camel) thread #1 - timer://foo2] INFO  route1 - ### Hey! Camel route runs!  ###
+10:23:51.893 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 227
+10:23:52.742 [Restlet-242453953] INFO  org.restlet.Component.LogService - 2018-08-22	10:23:52	0:0:0:0:0:0:0:1	-	-	9090	GET	/rest/ping	-	200	4	0	3	http://localhost:9090	Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0	-
+10:23:52.748 [Restlet-242453953] WARN  org.restlet.Component.LogFilter - Addition of the standard header "Accept" is not allowed. Please use the equivalent property in the Restlet API.
+10:23:52.748 [Restlet-242453953] WARN  org.restlet.Component.LogFilter - Addition of the standard header "Accept-encoding" is not allowed. Please use the equivalent property in the Restlet API.
+10:23:52.748 [Restlet-242453953] WARN  org.restlet.Component.LogFilter - Addition of the standard header "Accept-language" is not allowed. Please use the equivalent property in the Restlet API.
+10:23:52.749 [Restlet-242453953] WARN  org.restlet.Component.LogFilter - Addition of the standard header "Connection" is not allowed. Please use the equivalent property in the Restlet API.
+10:23:52.749 [Restlet-242453953] WARN  org.restlet.Component.LogFilter - Addition of the standard header "Host" is not allowed. Please use the equivalent property in the Restlet API.
+10:23:52.749 [Restlet-242453953] WARN  org.restlet.Component.LogFilter - Addition of the standard header "User-agent" is not allowed. Please use the equivalent property in the Restlet API.
+10:23:53.894 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 594
+10:23:55.894 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 429
+10:23:57.894 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 166
+10:23:59.894 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 586
+10:24:01.891 [Camel (camel) thread #1 - timer://foo2] INFO  route1 - ### Hey! Camel route runs!  ###
+10:24:01.895 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 732
+10:24:03.894 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 144
+10:24:05.895 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 366
+10:24:07.894 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 271
+10:24:09.895 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 733
+10:24:11.891 [Camel (camel) thread #1 - timer://foo2] INFO  route1 - ### Hey! Camel route runs!  ###
+10:24:11.895 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 955
+10:24:13.895 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 343
+10:24:15.896 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 818
+10:24:17.896 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 833
+10:24:19.896 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 284
+10:24:21.891 [Camel (camel) thread #1 - timer://foo2] INFO  route1 - ### Hey! Camel route runs!  ###
+10:24:21.896 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 560
+10:24:23.897 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 377
+10:24:25.897 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 677
+10:24:27.896 [Camel (camel) thread #0 - timer://foo] INFO  simple-route - >>> 155
+^C10:24:29.347 [Thread-9] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6572f053: startup date [Wed Aug 22 10:23:26 CDT 2018]; root of context hierarchy
+10:24:29.349 [Thread-9] INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.19.1 (CamelContext: camel) is shutting down
+10:24:29.350 [Thread-9] INFO  o.a.c.impl.DefaultShutdownStrategy - Starting to graceful shutdown 3 routes (timeout 300 seconds)
+10:24:29.354 [Camel (camel) thread #2 - ShutdownTask] INFO  o.a.c.impl.DefaultShutdownStrategy - Route: ping shutdown complete, was consuming from: rest://get:/rest:ping?componentName=restlet&consumes=application%2Ftext&produces=application%2Ftext&routeId=ping
+10:24:29.354 [Camel (camel) thread #2 - ShutdownTask] INFO  o.a.c.impl.DefaultShutdownStrategy - Route: route1 shutdown complete, was consuming from: timer://foo2?period=10s
+10:24:29.355 [Camel (camel) thread #2 - ShutdownTask] INFO  o.a.c.impl.DefaultShutdownStrategy - Route: simple-route shutdown complete, was consuming from: timer://foo?period=2000
+10:24:29.355 [Thread-9] INFO  o.a.c.impl.DefaultShutdownStrategy - Graceful shutdown of 3 routes completed in 0 seconds
+10:24:29.379 [Thread-9] INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.19.1 (CamelContext: camel) uptime 58.782 seconds
+10:24:29.379 [Thread-9] INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.19.1 (CamelContext: camel) is shutdown in 0.030 seconds
+10:24:29.379 [Thread-9] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@580cc263: startup date [Wed Aug 22 10:23:30 CDT 2018]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6572f053
+10:24:29.385 [Thread-9] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 0
+10:24:29.386 [Thread-9] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Unregistering JMX-exposed beans on shutdown
+10:24:29.386 [Thread-9] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Unregistering JMX-exposed beans
+10:24:29.386 [Thread-9] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:08 min
+[INFO] Finished at: 2018-08-22T10:24:29-05:00
+[INFO] Final Memory: 66M/898M
+[INFO] ------------------------------------------------------------------------
+krick@DESKTOP-C47TI0G:~/Tools/A/Container_Stuff/fabric8/Fabric8_Quickstarts/spring-boot-camel-xml\[rick@DESKTOP-C47TI0G spring-boot-camel-xml]$ exit
+
+Script done on 2018-08-22 10:24:31-05:00

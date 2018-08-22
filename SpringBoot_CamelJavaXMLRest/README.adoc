@@ -1,0 +1,5 @@
+Shows how Spring Boot can be used:
+
+- With both a Java DSL and a Spring DSL Camel route
+- With Camel REST DSL, using configuration of the threading for Restlet
+
