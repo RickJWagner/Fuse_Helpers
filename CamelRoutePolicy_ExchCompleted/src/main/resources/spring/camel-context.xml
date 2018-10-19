@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+
+
+       <bean id="eventLogger"
+			class="org.apache.camel.management.LoggingEventNotifier">
+			<property name="logName" value="rider.EventLog"/>
+			<property name="ignoreCamelContextEvents" value="false"/>
+			<property name="ignoreRouteEvents" value="true"/>
+			<property name="ignoreServiceEvents" value="true"/>
+  	   </bean>
+  	   
+  	   <!-- Event Notifier, correlation does not seem to work  -->
+		<bean id="auditEventNotifier" class="org.mycompany.AuditEventNotifier"></bean>
+		
+		<!--  Route Policy -->
+	<bean id="myRoutePolicy" class="org.mycompany.MyRoutePolicy"></bean>	
+
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+              
+        <route id="simple-route" routePolicyRef="myRoutePolicy">
+            <from id="route-timer" uri="timer://foo?repeatCount=3"/>
+            <setBody id="route-setBody">
+                <simple>Hello World from camel-context.xml</simple>
+            </setBody>
+            <multicast id="_multicast1" >
+                <to id="_to1" uri="direct:two"/>
+                <to id="_to2" uri="direct:three"/>
+                <to id="_to3" uri="direct:four"/>
+            </multicast>
+            <log id="route-log" message=">>> DONE."/>
+        </route>
+        <route id="_route1">
+            <from id="route-timer2" uri="direct:two"/>
+            <log id="route-log2" message=">>> Two done."/>
+        </route>
+        <route id="_route2">
+            <from id="route-timer3" uri="direct:three"/>
+            <log id="route-log3" message=">>> Three done."/>
+        </route>
+        <route id="_route3">
+            <from id="route-timer4" uri="direct:four"/>
+            <log id="route-log4" message=">>> Four done."/>
+        </route>
+    </camelContext>
+</beans>
