@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd        
+        http://camel.apache.org/schema/spring 
+        http://camel.apache.org/schema/spring/camel-spring.xsd
+        http://camel.apache.org/schema/cxf
+        http://camel.apache.org/schema/cxf/camel-cxf.xsd" >
+   
+
+    <camelContext id="xml2json_context"
+        xmlns="http://camel.apache.org/schema/spring" xmlns:order="http://fabric8.com/examples/order/v7">
+
+
+    <restConfiguration bindingMode="off" component="undertow" scheme="https"  
+            contextPath="test" enableCORS="true" host="localhost" port="8080"/>
+
+    <rest path="/hello">
+      <get uri="/{id}">
+        <to uri="direct:process_route"/>
+      </get>
+
+    </rest>
+
+
+    
+        <route id="theroute">
+            <from id="timer1" uri="timer://t1?fixedRate=true&amp;period=100000&amp;delay=500"/>
+            <log id="_log1" message="Got message:${body}"/>
+        </route>
+
+
+        <route id="process_route">
+            <from id="direct1" uri="direct://process_route"/>
+            <setBody id="_setBody1">
+                <simple>Hello from the Camel</simple>
+            </setBody>
+        </route>
+    
+    </camelContext>
+
+</beans>
