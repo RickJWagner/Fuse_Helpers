@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://camel.apache.org/schema/cxf 
+        http://camel.apache.org/schema/cxf/camel-cxf.xsd
+        http://camel.apache.org/schema/spring 
+        http://camel.apache.org/schema/spring/camel-spring.xsd
+        http://cxf.apache.org/jaxws 
+        http://cxf.apache.org/schemas/jaxws.xsd
+         http://www.springframework.org/schema/util 
+         http://www.springframework.org/schema/util/spring-util.xsd" >
+
+
+        <bean id="transformFeature" class="org.apache.cxf.feature.StaxTransformFeature">
+        <property name="outTransformElements">
+            <util:map>            
+            <entry key="{http://wildfly.camel.test.cxf}*" value="{http://wildfly.camel.test.cxfCHANGED!!}*"/> 
+            </util:map>
+        </property>
+        </bean> 
+
+    <cxf:cxfEndpoint id="cxfConsumer"
+        address="http://localhost:8080/EndpointService/EndpointPort"
+        serviceClass="org.wildfly.camel.test.common.types.Endpoint">
+        <cxf:outInterceptors>
+            <bean id="Http2HttpsInterceptor" class="org.sample.SampleInterceptor" />
+        </cxf:outInterceptors>
+        <cxf:features>
+            <ref bean="transformFeature" />
+        </cxf:features>
+    </cxf:cxfEndpoint>
+
+    <cxf:cxfEndpoint id="cxfProducer"
+        address="http://localhost:8080/EndpointService/EndpointPort"
+        serviceClass="org.wildfly.camel.test.common.types.Endpoint" />
+
+    <camelContext id="cxfws-undertow" xmlns="http://camel.apache.org/schema/spring">
+        <route id="producerRoute">
+            <from uri="direct:start" />
+            <to uri="cxf:bean:cxfProducer" />
+        </route>
+        <route id="consumerRoute">
+            <from uri="cxf:bean:cxfConsumer" />
+            <transform>
+                <simple>Hello ${body}</simple>
+            </transform>
+        </route>
+    </camelContext>
+
+</beans>
