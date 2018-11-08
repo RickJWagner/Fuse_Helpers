@@ -1,0 +1,61 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://camel.apache.org/schema/cxf"
+xmlns:jee="http://www.springframework.org/schema/jee" xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean class="org.apache.cxf.transport.jms.JMSConfiguration" id="TheJmsConfig">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="targetDestination" value="OrdersQueue" />
+        <property name="pubSubDomain" value="false" />
+        <property name="receiveTimeout" value="25000" />
+        <property name="timeToLive" value="30000" />
+        <property name="explicitQosEnabled" value="true" />
+        <property name="deliveryMode" value="1" />
+    </bean>
+    
+    <bean class="org.apache.cxf.transport.jms.JMSConfiguration" id="TheJmsConfig2">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="targetDestination" value="OrdersQueue" />
+        <property name="pubSubDomain" value="false" />
+        <property name="receiveTimeout" value="25000" />
+        <property name="timeToLive" value="30000" />
+        <property name="explicitQosEnabled" value="true" />
+        <property name="deliveryMode" value="1" />
+    </bean>
+    
+    <cxf:cxfEndpoint id="cxfConsumer" address="jms://" serviceClass="org.wildfly.camel.examples.cxf.jaxws.GreetingService">
+        <cxf:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature" p:jmsConfig-ref="TheJmsConfig2" />
+        </cxf:features>
+    </cxf:cxfEndpoint>
+
+    <cxf:cxfEndpoint id="cxfProducer" address="jms://" serviceClass="org.wildfly.camel.examples.cxf.jaxws.GreetingService">
+        <cxf:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature" p:jmsConfig-ref="TheJmsConfig" />
+        </cxf:features>
+    </cxf:cxfEndpoint>
+
+    <bean id="greetingsProcessor" class="org.wildfly.camel.examples.cxf.jaxws.GreetingsProcessor" />
+
+    <jee:jndi-lookup id="connectionFactory" jndi-name="java:/ConnectionFactory" />
+
+    <camelContext id="cxfws-camel-context" xmlns="http://camel.apache.org/schema/spring">
+<!--
+         This route defines a CXF producer endpoint which invokes a greeting web service.
+         CamelCxfWsServlet sends the required message 
+        -->
+        <route id="directToCxfrsBeanRoute">
+            <from id="directConsumer" uri="direct:start" />
+            <log message="### directToCxfrsBeanRoute runs! ###" />
+            <to id="cxfwsProducer" uri="cxf:bean:cxfProducer" />
+            <log message="### directToCxfrsBeanRoute sends to cxfwsProducer ###" />
+            <log message="### directToCxfrsBeanRoute sends to queue ###" />
+        </route>
+        
+        
+        <route id="cxfConsumerToProcessorRoute">
+            <from id="cxfrsConsumer" uri="cxf:bean:cxfConsumer" />
+            <log message="### cxfConsumerToProcessorRoute runs! ###" />
+            <process id="processor" ref="greetingsProcessor" />
+        </route>
+    </camelContext>
+</beans>

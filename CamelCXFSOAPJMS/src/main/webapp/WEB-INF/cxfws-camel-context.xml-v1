@@ -1,0 +1,190 @@
+<!--
+  #%L
+  Wildfly Camel :: Example :: Camel CXF JAX-WS
+  %%
+  Copyright (C) 2013 - 2016 RedHat
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://camel.apache.org/schema/spring
+        http://camel.apache.org/schema/spring/camel-spring.xsd">
+        
+        
+
+
+
+ <!--   Customer's artifacts as an example
+
+    <bean class="org.apache.cxf.transport.jms.JMSConfiguration" id="ConfirmOrderChangeJmsConfig">
+        <property name="connectionFactory" ref="backendPooledConnectionFactory" />
+        <property name="targetDestination" value="${productionorder.confirmorderchange.queue.name}" />
+        <property name="pubSubDomain" value="false" />
+        <property name="receiveTimeout" value="25000" />
+        <property name="timeToLive" value="30000" />
+        <property name="explicitQosEnabled" value="true" />
+        <property name="deliveryMode" value="1" />
+    </bean>
+
+    <cxf:cxfEndpoint id="ConfirmOrderChangeProxyCXFEndpointReceiver"
+                     wsdlURL="gepard/Service/SchedulingAndProductionCtrl/ProductionOrder/ProductionOrderProxy-001.wsdl"
+                     serviceName="wsdl:ProductionOrderProxy"
+                     endpointName="wsdl:ProductionOrderProxyConfirmOrderChangeJMSEndpoint"
+                     xmlns:wsdl="http://www.daimler.com/gepard/Service/SchedulingAndProductionCtrl/ProductionOrderProxy001/wsdl">
+        <cxf:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature"
+                  p:jmsConfig-ref="ConfirmOrderChangeProxyJmsConfig" />
+        </cxf:features>
+        <cxf:outFaultInterceptors> <ref bean="faultInterceptor"/></cxf:outFaultInterceptors>
+    </cxf:cxfEndpoint>
+
+    <cxf:cxfEndpoint id="ConfirmOrderChangeCXFEndpointSender"
+                     wsdlURL="gepard/Service/SchedulingAndProductionCtrl/ProductionOrder/ProductionOrder-001.wsdl"
+                     serviceName="wsdl:ProductionOrder"
+                     endpointName="wsdl:ProductionOrderConfirmOrderChangeJMSEndpoint"
+                     xmlns:wsdl="http://www.daimler.com/gepard/Service/SchedulingAndProductionCtrl/ProductionOrder001/wsdl">
+        <cxf:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature"
+                  p:jmsConfig-ref="ConfirmOrderChangeJmsConfig" />
+           
+        </cxf:features>
+        <cxf:outInterceptors>
+			<ref bean="timeOutInterceptor" />
+		</cxf:outInterceptors>
+        <cxf:properties>
+            <entry key="schema-validation-enabled" value="true" />
+        </cxf:properties>
+    </cxf:cxfEndpoint>
+ 
+ -->       
+
+    <bean class="org.wildfly.camel.examples.cxf.jaxws.OrderProcessor" id="orderProcessor" />
+
+    <bean class="org.apache.cxf.transport.jms.JMSConfiguration" id="TheJmsConfig">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="targetDestination" value="queue/OrdersQueue" />
+        <property name="pubSubDomain" value="false" />
+        <property name="receiveTimeout" value="25000" />
+        <property name="timeToLive" value="30000" />
+        <property name="explicitQosEnabled" value="true" />
+        <property name="deliveryMode" value="1" />
+    </bean>
+    
+    
+    <!--  transferEndpoint is a contract-first ws.  
+      It can be reached at http://127.0.0.1:8080/transfer?wsdl
+     -->
+          <cxf:cxfEndpoint id="transferEndpoint"
+                   address="http://localhost:9000/transfer/"
+                   serviceClass="org.sample.Payment"
+                   wsdlURL="wsdl/transfer.wsdl"/>    
+
+
+
+
+
+       <!-- address="http://localhost:8080/webservices/greeting" -->
+    	<!--  Commenting out so we only use 1 session
+    	<cxf:cxfEndpoint id="cxfConsumer"
+                     address="jms://"
+                     serviceClass="org.wildfly.camel.examples.cxf.jaxws.GreetingService">
+                              
+                             <cxf:features>
+					            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature" p:jmsConfig-ref="TheJmsConfig" />
+				        	</cxf:features>
+				        	
+     	</cxf:cxfEndpoint>
+     	-->
+                     
+
+
+
+
+
+
+    <!-- 
+       address="http://{{sys:jboss.bind.address:localhost}}:8080/webservices/greeting"
+     -->
+    <cxf:cxfEndpoint id="cxfProducer"
+                     address="jms://"
+                     serviceClass="org.wildfly.camel.examples.cxf.jaxws.GreetingService">
+                     <cxf:features>
+			            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature" p:jmsConfig-ref="TheJmsConfig" />
+			      	 </cxf:features>
+    </cxf:cxfEndpoint>
+
+    <bean id="greetingsProcessor" class="org.wildfly.camel.examples.cxf.jaxws.GreetingsProcessor" />
+
+   <!-- Look up the JMS ConnectionFactory from JNDI -->
+    <jee:jndi-lookup id="connectionFactory" jndi-name="java:jboss/DefaultJMSConnectionFactory"/>
+
+    <!-- Configure the JMS component with the connection factory retrieved from JNDI -->
+    <bean id="jmsComponent" class="org.apache.camel.component.jms.JmsComponent">
+        <property name="connectionFactory" ref="connectionFactory" />
+    </bean>
+
+
+    <camelContext id="cxfws-camel-context" xmlns="http://camel.apache.org/schema/spring">
+        <!--
+         This route defines a CXF producer endpoint which invokes a greeting web service.
+
+         CamelCxfWsServlet sends the required message and name parameters to the service by populating them
+         within the message exchange body.
+        -->
+        <route id="directToCxfrsBeanRoute">
+            <from id="directConsumer" uri="direct:start" />
+            <log message="### directToCxfrsBeanRoute runs! ###" />
+            <to id="cxfwsProducer" uri="cxf:bean:cxfProducer" />
+            <log message="### directToCxfrsBeanRoute sends to cxfwsProducer ###" />
+            <!--
+            <to id="_to1" uri="jms:queue:OrdersQueue"/>
+            -->
+            <log message="### directToCxfrsBeanRoute sends to queue ###" />
+        </route>
+
+        <!--
+        This route defines a CXF consumer endpoint which handles requests made to the greeting web service.
+
+        GreetingsProcessor constructs a String greeting response to return back to the JAX-WS client.
+        -->
+        <!-- 
+        <route id="cxfConsumerToProcessorRoute">
+            
+            <from id="cxfrsConsumer" uri="cxf:bean:cxfConsumer" />
+            <log message="### cxfConsumerToProcessorRoute runs! ###" />
+            <process id="processor" ref="greetingsProcessor" />
+        </route>
+        -->
+    
+    <route>
+      <!-- Sample contract-first ws -->
+      <from uri="cxf:bean:transferEndpoint" />
+ 	  <bean ref="orderProcessor" method="processTransfer"/>
+      <log message="WS route finishes ${body}" />
+    </route>
+  
+        
+    </camelContext>
+    
+    
+
+</beans>
